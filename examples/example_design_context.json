@@ -1,0 +1,37 @@
+{
+  "active_component": "RootComponent",
+  "units": "mm",
+  "design_state": "has_geometry",
+  "active_sketch": null,
+  "material": "Aluminum 6061",
+  "parameters": {
+    "main_width": 100,
+    "main_height": 50,
+    "wall_thickness": 3,
+    "hole_diameter": 5
+  },
+  "geometry_count": {
+    "bodies": 3,
+    "sketches": 2,
+    "components": 1,
+    "features": 8
+  },
+  "recent_operations": [
+    {
+      "type": "extrude",
+      "timestamp": "2025-01-15T10:25:00Z",
+      "parameters": {
+        "distance": 50,
+        "operation": "join"
+      }
+    },
+    {
+      "type": "hole",
+      "timestamp": "2025-01-15T10:28:00Z",
+      "parameters": {
+        "diameter": 5,
+        "depth": "through"
+      }
+    }
+  ]
+}

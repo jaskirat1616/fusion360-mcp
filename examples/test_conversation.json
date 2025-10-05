@@ -1,0 +1,228 @@
+{
+  "conversation_examples": [
+    {
+      "user_input": "Create a 20mm cube",
+      "expected_response": {
+        "action": "create_box",
+        "params": {
+          "width": 20,
+          "height": 20,
+          "depth": 20,
+          "unit": "mm"
+        },
+        "explanation": "Creating a 20mm cubic box as requested",
+        "safety_checks": [
+          "dimensions_positive",
+          "units_valid"
+        ]
+      }
+    },
+    {
+      "user_input": "Design a mounting bracket with 4 mounting holes",
+      "expected_response": {
+        "actions": [
+          {
+            "action": "create_box",
+            "params": {
+              "width": 100,
+              "height": 50,
+              "depth": 5,
+              "unit": "mm"
+            },
+            "explanation": "Create base plate for mounting bracket"
+          },
+          {
+            "action": "create_hole",
+            "params": {
+              "diameter": 5,
+              "position": {"x": 10, "y": 10, "z": 0},
+              "unit": "mm"
+            },
+            "explanation": "Add mounting hole at corner 1"
+          },
+          {
+            "action": "create_hole",
+            "params": {
+              "diameter": 5,
+              "position": {"x": 90, "y": 10, "z": 0},
+              "unit": "mm"
+            },
+            "explanation": "Add mounting hole at corner 2"
+          },
+          {
+            "action": "create_hole",
+            "params": {
+              "diameter": 5,
+              "position": {"x": 10, "y": 40, "z": 0},
+              "unit": "mm"
+            },
+            "explanation": "Add mounting hole at corner 3"
+          },
+          {
+            "action": "create_hole",
+            "params": {
+              "diameter": 5,
+              "position": {"x": 90, "y": 40, "z": 0},
+              "unit": "mm"
+            },
+            "explanation": "Add mounting hole at corner 4"
+          }
+        ],
+        "total_steps": 5
+      }
+    },
+    {
+      "user_input": "Create a cylindrical shaft 10mm diameter and 100mm long",
+      "expected_response": {
+        "action": "create_cylinder",
+        "params": {
+          "radius": 5,
+          "height": 100,
+          "unit": "mm"
+        },
+        "explanation": "Creating cylindrical shaft with 10mm diameter (5mm radius) and 100mm length",
+        "safety_checks": [
+          "radius_calculated_correctly",
+          "dimensions_positive"
+        ]
+      }
+    },
+    {
+      "user_input": "Make a sphere with 25mm radius",
+      "expected_response": {
+        "action": "create_sphere",
+        "params": {
+          "radius": 25,
+          "unit": "mm"
+        },
+        "explanation": "Creating sphere with 25mm radius",
+        "safety_checks": [
+          "radius_positive",
+          "units_valid"
+        ]
+      }
+    },
+    {
+      "user_input": "Add a 3mm hole at position x=10, y=20",
+      "expected_response": {
+        "action": "create_hole",
+        "params": {
+          "diameter": 3,
+          "position": {"x": 10, "y": 20, "z": 0},
+          "depth": null,
+          "unit": "mm"
+        },
+        "explanation": "Creating 3mm through-hole at specified position",
+        "safety_checks": [
+          "position_specified",
+          "diameter_positive"
+        ],
+        "dependencies": [
+          "requires_existing_body"
+        ]
+      }
+    },
+    {
+      "user_input": "Apply aluminum material",
+      "expected_response": {
+        "action": "apply_material",
+        "params": {
+          "material_name": "Aluminum"
+        },
+        "explanation": "Applying aluminum material to all bodies",
+        "safety_checks": [
+          "material_exists_in_library"
+        ]
+      }
+    },
+    {
+      "user_input": "Make a container",
+      "expected_response": {
+        "clarifying_questions": [
+          {
+            "question": "What are the container's dimensions?",
+            "context": "Need to know size specifications",
+            "suggestions": ["50x50x50mm", "100x100x100mm", "Custom"]
+          },
+          {
+            "question": "Should it be hollow or solid?",
+            "context": "Determines wall thickness requirement",
+            "suggestions": ["Hollow with 2mm walls", "Solid"]
+          },
+          {
+            "question": "Does it need an opening or lid?",
+            "context": "Affects top surface design",
+            "suggestions": ["Open top", "Removable lid", "Sealed"]
+          }
+        ],
+        "reasoning": "Container design requires specific dimensional and structural details"
+      }
+    },
+    {
+      "user_input": "Design an enclosure for a 50x30x20mm PCB with 3mm clearance",
+      "expected_response": {
+        "actions": [
+          {
+            "action": "create_box",
+            "params": {
+              "width": 56,
+              "height": 36,
+              "depth": 26,
+              "unit": "mm"
+            },
+            "explanation": "Create outer enclosure (PCB size + 3mm clearance on all sides)"
+          },
+          {
+            "action": "create_box",
+            "params": {
+              "width": 50,
+              "height": 30,
+              "depth": 23,
+              "unit": "mm",
+              "position": {"x": 3, "y": 3, "z": 3}
+            },
+            "explanation": "Create cavity for PCB (positioned with 3mm offset)"
+          }
+        ],
+        "total_steps": 2,
+        "reasoning": "Enclosure designed with specified clearance, cavity cut for PCB placement"
+      }
+    }
+  ],
+  "test_scenarios": {
+    "unit_conversion": {
+      "input": "Create a 2 inch cube",
+      "expected_conversion": {
+        "width": 5.08,
+        "height": 5.08,
+        "depth": 5.08,
+        "unit": "cm"
+      }
+    },
+    "error_handling": {
+      "input": "Create a box with negative dimensions",
+      "expected_error": {
+        "type": "invalid_parameters",
+        "message": "Dimensions must be positive values",
+        "validation_failed": "dimensions_positive"
+      }
+    },
+    "multi_model_chain": {
+      "input": "Design an optimized gear system",
+      "expected_routing": [
+        {
+          "model": "gemini",
+          "task": "Calculate gear ratios and tooth profiles"
+        },
+        {
+          "model": "claude",
+          "task": "Validate mechanical constraints and safety"
+        },
+        {
+          "model": "openai",
+          "task": "Generate final CAD action sequence"
+        }
+      ]
+    }
+  }
+}

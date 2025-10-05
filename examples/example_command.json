@@ -1,0 +1,27 @@
+{
+  "command": "ask_model",
+  "params": {
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "prompt": "Create a 20mm cube with a 5mm hole through the center",
+    "temperature": 0.7,
+    "max_tokens": 2000
+  },
+  "context": {
+    "active_component": "RootComponent",
+    "units": "mm",
+    "design_state": "empty",
+    "active_sketch": null,
+    "material": null,
+    "parameters": {},
+    "geometry_count": {
+      "bodies": 0,
+      "sketches": 0
+    }
+  },
+  "metadata": {
+    "user": "designer1",
+    "session_id": "abc123",
+    "timestamp": "2025-01-15T10:30:00Z"
+  }
+}

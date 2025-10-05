@@ -1,0 +1,13 @@
+{
+    "autodeskProduct": "Fusion360",
+    "type": "addin",
+    "id": "com.fusionmcp.addin",
+    "author": "FusionMCP Team",
+    "description": {
+        "": "Multi-model MCP integration for AI-powered parametric CAD design"
+    },
+    "version": "1.0.0",
+    "runOnStartup": false,
+    "supportedOS": "windows|mac",
+    "editEnabled": true
+}
