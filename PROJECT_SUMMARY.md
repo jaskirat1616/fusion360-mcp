@@ -343,7 +343,6 @@ User: "Box with dimensions 2:1:1 ratio"
 
 ### 🔄 Optional Enhancements (Future)
 - WebSocket streaming
-- Vision model integration
 - Multi-agent orchestration
 - Cloud deployment
 - UI improvements

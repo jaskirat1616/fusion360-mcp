@@ -525,13 +525,12 @@ CMD ["uvicorn", "mcp_server.server:app", "--host", "0.0.0.0", "--port", "9000"]
 ## Future Enhancements
 
 1. **WebSocket Support** - Real-time streaming responses
-2. **Vision Models** - Screenshot analysis for CAD review
-3. **Multi-Agent System** - Specialized agents for different tasks
-4. **Cloud Deployment** - Hosted MCP server
-5. **Authentication** - User accounts and API keys
-6. **Rate Limiting** - Per-user request limits
-7. **Metrics Dashboard** - Usage analytics
-8. **Plugin System** - Community extensions
+2. **Multi-Agent System** - Specialized agents for different tasks
+3. **Cloud Deployment** - Hosted MCP server
+4. **Authentication** - User accounts and API keys
+5. **Rate Limiting** - Per-user request limits
+6. **Metrics Dashboard** - Usage analytics
+7. **Plugin System** - Community extensions
 
 ---
 

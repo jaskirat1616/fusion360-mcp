@@ -667,7 +667,6 @@ MIT License - see [LICENSE](LICENSE) file
 ## 🗺️ Roadmap
 
 - [ ] WebSocket streaming for real-time chat
-- [ ] Vision model support (CAD screenshot analysis)
 - [ ] Multi-agent orchestration
 - [ ] Generative Design API integration
 - [ ] Geometry export to Markdown/docs
